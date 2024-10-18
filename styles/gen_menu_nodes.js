@@ -47,14 +47,15 @@ function switch_sub(button) {
         let level = parseInt(chapter.getAttribute('level'));
         if (isNaN(level) || level <= current_level) {
             break;
-        } else if (level > current_level + 1) {
-            chapter = chapter.nextElementSibling;
-            continue;
         }
         if (expanded) {
             chapter.classList.remove('d-flex');
             chapter.style.display = "none";
         } else {
+            if (level > current_level + 1) {
+                chapter = chapter.nextElementSibling;
+                continue;
+            }
             chapter.classList.add('d-flex');
             chapter.style.display = "flex";
         }
