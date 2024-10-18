@@ -44,13 +44,17 @@ function switch_sub(button) {
     const current_level = parseInt(button.parentNode.getAttribute('level'));
     let chapter = button.parentNode.nextElementSibling;
     while (chapter) {
-        let level = parseInt(chapter.getAttribute('level'));
+        const level = parseInt(chapter.getAttribute('level'));
         if (isNaN(level) || level <= current_level) {
             break;
         }
         if (expanded) {
             chapter.classList.remove('d-flex');
             chapter.style.display = "none";
+            const chapter_button = chapter.querySelector('a[role="button"]');
+            if (chapter_button) {
+                chapter_button.innerHTML = node_collapsed_triangle;
+            }
         } else {
             if (level > current_level + 1) {
                 chapter = chapter.nextElementSibling;
